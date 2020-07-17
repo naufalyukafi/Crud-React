@@ -6,35 +6,39 @@ const Crud = () => {
     const [data, setData] = React.useState([
         {
             id: 1,
-            name: 'Belajar React JS Full'
+            name: 'React JS',
+            desc: 'Mempelajari usestate, useeffect, usememo dan hooks yang lain.'
         },
         {
             id: 2,
-            name: 'Belajar React Native Full'
+            name: 'Belajar React Native',
+            desc: 'Mempelajari view, text, image, dan component lainnya'
         },
         {
             id: 3,
-            name: 'Mapping pada react js'
+            name: 'Mapping pada react js',
+            desc: 'Belajar membuat nilai baru menggunakan mapping.'
         },
     ])
 
     const [newData, setNewData] = React.useState([
         {
             id: '',
-            name: ''
+            name: '',
+            desc: ''
         }
     ])
-
-    const { name } = newData
-
+    const { name, desc } = newData
     const handleChange = (e) => {
         setNewData({ ...newData, [e.target.name]: e.target.value })
     }
+
     const handleButton = () => {
         let sumId = data.length + 1
         setData([...data, {
             id: sumId,
-            name
+            name,
+            desc
         }])
     }
     const handleClear = (Id) => {
@@ -47,7 +51,9 @@ const Crud = () => {
             <Card style={{ width: '50%', marginTop: 20, backgroundColor: '#34495e', color: '#fff', textAlign: 'center' }}
                 onClick={() => handleClear(item.id)}
             >
-                <p style={{ textAlign: 'center', fontWeight: 'bold' }}>{item.name}</p>
+
+                <h3 style={{ textAlign: 'center', fontWeight: 'bold', color: 'white' }}>{item.name}</h3>
+                <p>{item.desc}</p>
             </Card>
         )
     })
@@ -62,6 +68,15 @@ const Crud = () => {
                             size="25"
                             name="name"
                             value={name}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div style={{ border: '2px solid grey', marginTop: 20 }}>
+                        <input
+                            placeholder="typing desc in here"
+                            size="25"
+                            name="desc"
+                            value={desc}
                             onChange={handleChange}
                         />
                     </div>
